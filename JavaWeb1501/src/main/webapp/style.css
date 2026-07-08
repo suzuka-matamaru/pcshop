@@ -1,0 +1,63 @@
+@charset "UTF-8";
+
+body {
+	font-family: BIZ UDPゴシック;
+	background-color: #d1ffff;
+	text-align: center;
+}
+
+h1 {
+	font-size: 32px;
+    color: #1adbd9;
+}
+
+h2 {
+	font-size: 28px;
+    background-color:#1adbd9;
+    color: white
+}
+
+hr {
+	border: 0;
+	border-top: 1px solid #13aebe;
+}
+
+.error-msg {
+    color: red;
+}
+
+table {
+	border: 1px solid #5e696c;
+	margin-left: auto;
+	margin-right: auto;
+	width: 80%; 					/* テーブル横幅 */
+	border-collapse:  collapse; 	/* 境界線を共有 */
+}
+
+th {
+	border: 1px solid #5e696c;
+    text-align:center;
+    background-color: #56cbd7;
+    height: 32px;
+}
+
+td {
+	border: 1px solid #5e696c;
+	text-align: center;
+	height: 24px;
+}
+
+.select-list {
+    background-color: #abe3ed;
+}
+.cart-list{
+	background-color:	#5ce2eb;
+	
+}
+
+.pay-list{
+	background-color: #7cbcee;
+	
+}
+
+
