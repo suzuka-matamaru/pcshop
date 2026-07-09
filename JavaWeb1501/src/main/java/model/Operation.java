@@ -4,11 +4,22 @@ import java.util.ArrayList;
 
 import jakarta.servlet.http.HttpSession;
 
+import dao.UserDaoDB;
+
 /**
  * 店内オペレーションクラス
  * @author M.Takahashi
  */
 public class Operation {
+	
+
+	
+	private UserDaoDB userDao;
+
+	public Operation() {
+		userDao = new UserDaoDB
+		("cscdb","localhost","3306","root","mysql2026");
+	}
 	/**
 	 * ログイン時の処理
 	 * @param userId リクエストパラメータ
@@ -47,6 +58,9 @@ public class Operation {
 
 		return result;
 	}
+	
+	
+	
 	
 	/**
 	 * 店舗情報（店舗名＋選択データ（リスト））を作成する
