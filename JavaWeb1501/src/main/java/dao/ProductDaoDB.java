@@ -30,18 +30,18 @@ public class ProductDaoDB implements ProductDao {
 	};
 	
 	@Override
-	public Product getProduct(String productId) {
+	public List<Product> getProductList() {
+		List<Product> productList =new ArrayList<>();
 		//データベース接続
 		try (Connection connection = getConnection()) {
 			String sql = "SELECT*FROM Product";
 			PreparedStatement statement = connection.prepareStatement(sql);
-			statement.setString(1, productId);
-	
+				
 			try (ResultSet resultSet = statement.executeQuery()) {
-				if (resultSet.next()) {
-					return new Product(resultSet.getString("id"),
+				while(resultSet.next()) {
+					productList.add(new Product(resultSet.getString("id"),
 							resultSet.getString("name"),
-							resultSet.getInt("price"));
+							resultSet.getInt("price")));
 	
 				}
 			}
@@ -50,7 +50,7 @@ public class ProductDaoDB implements ProductDao {
 			
 		
 	}
-		return null;
+		return productList;
 
 }
 
@@ -62,10 +62,7 @@ public class ProductDaoDB implements ProductDao {
 		return DriverManager.getConnection(url, id, password);
 	}
 	
-	public List<Product>getProdList()
-	{
-		return new ArrayList<>();
+	
 		
-	}
 
 }

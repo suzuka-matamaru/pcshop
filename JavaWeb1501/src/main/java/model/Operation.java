@@ -1,9 +1,11 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.servlet.http.HttpSession;
 
+import dao.ProductDaoDB;
 import dao.UserDaoDB;
 
 /**
@@ -15,11 +17,15 @@ public class Operation {
 
 	
 	private UserDaoDB userDao;
+	private ProductDaoDB productDao;
 
 	public Operation() {
 		userDao = new UserDaoDB
 		("cscdb","localhost","3306","root","mysql2026");
+		productDao = new ProductDaoDB
+				("cscdb","localhost","3306","root","mysql2026");
 	}
+	
 	/**
 	 * ログイン時の処理
 	 * @param userId リクエストパラメータ
@@ -56,8 +62,7 @@ public class Operation {
 		//UserDaoを使ってUserを検索してUserを取得
 		//Userがある場合→パスワードを参照(入力値と登録されているパスワードが一致するか)
 		//Userがない場合→false(認証NG)
-		boolean result = false;
-		if (result) {
+	
 			User user = userDao.getUser(userId);
 
 			if (user == null)
@@ -68,9 +73,7 @@ public class Operation {
 
 			return password.equals(user.getPassword());
 
-		}
 
-		return result;
 	}
 	
 	/**
@@ -80,21 +83,23 @@ public class Operation {
 	private Store makeStore() {
 
 		//データベースから商品情報を取得する
-		
+		List<Product> productList = productDao.getProductList();
 		
 
 		
 		// 店舗情報作成
-		Store store = new Store("速水PC販売", new ArrayList<Product>());
+		Store store = new Store("よろずや", new ArrayList<Product>());
+		
+		for(Product product:productList) {
+			product =new Product(
+				product.getId (),
+				product.getName(),
+				product.getPrice());
 		
 		// 商品追加
 		//ProductDao#getProductList()を使って商品を追加する処理をする
-		
-		
-		
-		
-		
-		
+			store.add(product);
+		}
 		
 		/*store.add(new Product("A110", "無線マウス", 2000));
 		store.add(new Product("A120", "薄型キーボード", 3600));

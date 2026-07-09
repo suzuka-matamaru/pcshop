@@ -31,10 +31,12 @@ public UserDaoDB
 	public User getUser(String userId) {
 		//データベース接続
 		try (Connection connection = getConnection()) {
-			String sql = "SELECT id,password,name FROM users WHERE id = ?";
+			String sql = "SELECT * FROM users WHERE id = ?";
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setString(1, userId);
 
+			System.out.println(sql);
+			
 			try (ResultSet resultSet = statement.executeQuery()) {
 				if (resultSet.next()) {
 					return new User(resultSet.getString("id"),
