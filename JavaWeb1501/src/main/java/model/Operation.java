@@ -53,14 +53,25 @@ public class Operation {
 	 */
 	private boolean authenticate(String userId, String password) {
 
-		// ★ここでは password = "pass" であれば true とする
-		boolean result = password.equals("pass");
+		//UserDaoを使ってUserを検索してUserを取得
+		//Userがある場合→パスワードを参照(入力値と登録されているパスワードが一致するか)
+		//Userがない場合→false(認証NG)
+		boolean result = false;
+		if (result) {
+			User user = userDao.getUser(userId);
+
+			if (user == null)
+				
+			{
+				return false;
+			}
+
+			return password.equals(user.getPassword());
+
+		}
 
 		return result;
 	}
-	
-	
-	
 	
 	/**
 	 * 店舗情報（店舗名＋選択データ（リスト））を作成する
@@ -68,11 +79,24 @@ public class Operation {
 	 */
 	private Store makeStore() {
 
+		//データベースから商品情報を取得する
+		
+		
+
+		
 		// 店舗情報作成
 		Store store = new Store("速水PC販売", new ArrayList<Product>());
 		
 		// 商品追加
-		store.add(new Product("A110", "無線マウス", 2000));
+		//ProductDao#getProductList()を使って商品を追加する処理をする
+		
+		
+		
+		
+		
+		
+		
+		/*store.add(new Product("A110", "無線マウス", 2000));
 		store.add(new Product("A120", "薄型キーボード", 3600));
 		store.add(new Product("A130", "Webカメラ", 3900));
 		store.add(new Product("A140", "トラックボールマウス", 2900));
@@ -81,7 +105,7 @@ public class Operation {
 		store.add(new Product("A170", "USB接続マイク", 3500));
 		store.add(new Product("A180", "小型ディスプレイ", 11000));
 		store.add(new Product("A190", "LED照明", 4200));
-		store.add(new Product("A200", "骨伝導イヤホン", 7800));
+		store.add(new Product("A200", "骨伝導イヤホン", 7800));*/
 		
 		return store;
 	}

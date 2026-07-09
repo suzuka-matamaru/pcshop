@@ -5,49 +5,54 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-import model.User;
+import model.Product;
 
-public class UserDaoDB implements UserDao {
-
+public class ProductDaoDB implements ProductDao {
+	
 	private String database;
 	private String host;
 	private String port;
 	private String id;
 	private String password;
 
-
-public UserDaoDB
-(String database,String host,String port,String id,String password) 
-{this.database =database;
-	this.host =host;
-	this.port =port;
-	this.id =id;
-	this.password =password;
 	
-};
+	public ProductDaoDB
+	(String database,String host,String port,String productid,String password) 
+	{this.database =database;
+		this.host =host;
+		this.port =port;
+		this.id =productid;
+		this.password =password;
 
+	};
+	
 	@Override
-	public User getUser(String userId) {
+	public Product getProduct(String productId) {
 		//データベース接続
 		try (Connection connection = getConnection()) {
-			String sql = "SELECT id,password,name FROM users WHERE id = ?";
+			String sql = "SELECT*FROM Product";
 			PreparedStatement statement = connection.prepareStatement(sql);
-			statement.setString(1, userId);
-
+			statement.setString(1, productId);
+	
 			try (ResultSet resultSet = statement.executeQuery()) {
 				if (resultSet.next()) {
-					return new User(resultSet.getString("id"),
-							resultSet.getString("password"),
-							resultSet.getString("name"));
+					return new Product(resultSet.getString("id"),
+							resultSet.getString("name"),
+							resultSet.getInt("price"));
+	
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-
-		}
-		return null;
+			
+		
 	}
+		return null;
+
+}
 
 	private Connection getConnection() throws ClassNotFoundException, SQLException {
 		// MySQL JDBCドライバを読み込む	
@@ -55,6 +60,12 @@ public UserDaoDB
 		String url = String.format("jdbc:mysql://%s:%s/%s?allowPublicKeyRetrieval=true&useSSL=false", host, port,
 				database);
 		return DriverManager.getConnection(url, id, password);
+	}
+	
+	public List<Product>getProdList()
+	{
+		return new ArrayList<>();
+		
 	}
 
 }
