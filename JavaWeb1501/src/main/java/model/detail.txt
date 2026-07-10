@@ -1,0 +1,42 @@
+メソッド構文
+戻り値の型：
+メソッド名(引数1の型 引数1, 引数2の型 引数2,…)｛｝
+
+public int plusTax(int product)
+{ return (int) (product * TAX); }
+商品の価格に税率 (TAX) を掛けて、結果を int 型として返す。
+・product : 商品価格
+・TAX : 税率（今回は1.1）final intで定数で定義した。
+・product * TAX : 税込み価格を計算
+・(int) : キャスト。小数点以下を切り捨てて整数に変換
+
+Calculator.java内のcalculateメソッドの説明↓
+
+①int totalPurchase =0;
+何も買っていない状態(0円)これは"商品カート"
+
+②for (int i =0; i< listProd.size(); i++ )
+1つずつ商品を取り出して金額を合計していくという
+繰り返しの処理をする(レジ打ちのイメージ)
+
+③Product product = listProd.get(i);
+商品リストの中から現在の商品(i)を取り出す
+0…オレオ
+1…リッツ
+2…ポッキー　　でi=1だとしたら、「リッツ」が取り出される
+
+
+④totalPurchase　=　totalPurchase　+　plusTax(product.getPrice()); }
+☆plusTaxの中に商品の税別価格を取得する
+例)plusTaxの中身が100(円)だとしたら、plusTax(100)で税の計算が入って110(円)となる
+つまり、totalPurchase(今回の計算の合計) =totalPurchase(前入れた金額) +plusTax(110円)
+
+"商品カート"に【商品+消費税】を追加して合算していく
+例)1回目：商品カート内0円＝1200+tax
+   2回目:商品カート内1320円(後で1870円になる)=500+tax
+   3回目:商品カート内1870円=300+tax
+・・・って続けていく
+
+
+⑤return totalPurchase;
+④で足されたものの値を返していく

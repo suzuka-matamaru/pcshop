@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpSession;
 import dao.ProductDaoDB;
 import dao.UserDaoDB;
 
+
 /**
  * 店内オペレーションクラス
  * @author M.Takahashi
@@ -162,12 +163,27 @@ public class Operation {
 		Cart cart = (Cart) session.getAttribute("cart");
 		if (cart !=null) {
 	//セッションに格納(清算済みデータ)
-			session.setAttribute("pay",cart);
+		session.setAttribute("pay",cart);
+		
+	//Cartの内容をPaymentテーブルに登録する
+	
+		//List<Product> product = cart.getListProd();
+	
+	
+	//カート内の商品リスト List<Product>listProdの件数分paymentテーブルに登録する
+	
+		/*for(Product product:product) {
+		
+		}
+		*/
+		
+		
 	//カート情報の新規作成→セッションに格納
 		Cart newCart = new Cart(cart.getUserId(),new ArrayList<Product>());
 		session.setAttribute("cart",newCart);
 		}
-		
+	
+	
 	
 		
 		
