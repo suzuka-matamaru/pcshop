@@ -17,6 +17,11 @@ public class Product {
 	private String name;
 	
 	/**
+	 * 商品画像
+	 */
+	private String image;
+	
+	/**
 	 * 価格
 	 */
 	private int price;
@@ -28,9 +33,10 @@ public class Product {
 	 * @param name
 	 * @param price
 	 */
-	public Product(String id, String name, int price) {
+	public Product(String id, String name,String image,int price) {
 		this.id = id;
 		this.name = name;
+		this.image =image;
 		this.price = price;
 	}
 
@@ -57,6 +63,17 @@ public class Product {
 		return name;
 	}
 
+	
+	/**
+	 * @return image
+	 */
+	 
+	public String getImage() {
+		return image;
+		
+	}
+	
+	
 	/**
 	 * @return price
 	 */

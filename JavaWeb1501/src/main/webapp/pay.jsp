@@ -10,13 +10,13 @@
 <head>
 <meta charset="UTF-8">
 
-<title>清算完了</title>
+<title>精算完了</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 	<%@include file="header-navi.jsp"%>
 
-	<h2>清算完了</h2>
+	<h2>精算完了</h2>
 
 	<p>お買い上げありがとうございました。</p>
 

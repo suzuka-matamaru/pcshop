@@ -89,14 +89,15 @@ public class Operation {
 
 		
 		// 店舗情報作成
-		Store store = new Store("よろずや", new ArrayList<Product>());
+		Store store = new Store("山川商事オンラインストア", new ArrayList<Product>());
 		
 		for(Product product:productList) {
 			product =new Product(
 				product.getId (),
 				product.getName(),
+				product.getImage(),
 				product.getPrice());
-		
+	
 		// 商品追加
 		//ProductDao#getProductList()を使って商品を追加する処理をする
 			store.add(product);

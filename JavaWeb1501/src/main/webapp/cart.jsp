@@ -29,7 +29,7 @@
 	%>
 		<table class ="cart-list">
 		<tr>
-		<th></th><th>商品ID</th><th>商品名</th><th>価格</th>
+		<th></th><th>商品ID</th><th>商品名</th><th>商品画像</th><th>価格</th>
 		</tr>
 <%
 	for (int idx = 0; idx < listProd.size(); idx++) {
@@ -44,6 +44,8 @@
 		</td>
 		<td><%=prod.getId() %></td>
 		<td><%=prod.getName() %></td>
+		<td><image/<%=prod.getImage() %>"width="100"
+				alt="<%=prod.getImage() %>"></td>
 		<td><%=prod.getPriceString() %></td>
 	</tr>
 <%

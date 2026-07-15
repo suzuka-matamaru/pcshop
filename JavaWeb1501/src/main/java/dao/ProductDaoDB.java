@@ -34,13 +34,14 @@ public class ProductDaoDB implements ProductDao {
 		List<Product> productList =new ArrayList<>();
 		//データベース接続
 		try (Connection connection = getConnection()) {
-			String sql = "SELECT*FROM Product";
+			String sql = "SELECT id,name,image,price FROM Product";
 			PreparedStatement statement = connection.prepareStatement(sql);
 				
 			try (ResultSet resultSet = statement.executeQuery()) {
 				while(resultSet.next()) {
 					productList.add(new Product(resultSet.getString("id"),
 							resultSet.getString("name"),
+							resultSet.getString("image"),
 							resultSet.getInt("price")));
 	
 				}
